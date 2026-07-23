@@ -1,0 +1,14 @@
+describe("Login", () => {
+  it("Login com dados válidos, deve permitir entrada no sistema", () => {
+    // arrange
+    cy.visit("http://localhost:4000");
+
+    // act
+    cy.get("#username").type("julio.lima");
+    cy.get("#senha").type("123456");
+    cy.get("#login-section > .btn").click();
+
+    // assert
+    cy.contains("h4", "Realizar Transferência").should("be.visible");
+  });
+});
