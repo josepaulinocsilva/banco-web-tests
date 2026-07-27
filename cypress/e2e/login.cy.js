@@ -1,9 +1,8 @@
 describe("Login", () => {
-  beforeEach(() => {
-    cy.visit("http://localhost:4000");
-  });
-
   it("Login com dados válidos, deve permitir entrada no sistema", () => {
+    // arrange
+    cy.visit("http://localhost:4000");
+
     // act
     cy.get("#username").type("julio.lima");
     cy.get("#senha").type("123456");
@@ -14,6 +13,9 @@ describe("Login", () => {
   });
 
   it("Login com dados inválidos, deve apresentar mensagem de erro entrada no sistema", () => {
+    // arrange
+    cy.visit("http://localhost:4000");
+
     // act
     cy.get("#username").type("julio.lima");
     cy.get("#senha").type("1234");
