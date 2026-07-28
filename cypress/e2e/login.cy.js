@@ -8,7 +8,9 @@ describe("Login", () => {
     // act
     cy.get("#username").type("julio.lima");
     cy.get("#senha").type("123456");
+    cy.screenshot("Após carregar a página de login e seus dados");
     cy.contains("button", "Entrar").click();
+    cy.screenshot("Após clicar no botão de entrar");
 
     // assert
     cy.contains("h4", "Realizar Transferência").should("be.visible");
