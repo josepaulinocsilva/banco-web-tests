@@ -1,5 +1,6 @@
 describe("Login", () => {
   beforeEach(() => {
+    // arrange
     cy.visit("http://localhost:4000");
   });
 
