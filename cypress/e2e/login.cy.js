@@ -6,8 +6,11 @@ describe("Login", () => {
 
   it("Login com dados válidos, deve permitir entrada no sistema", () => {
     // act
-    cy.get("#username").type("julio.lima");
-    cy.get("#senha").type("123456");
+    cy.fixture("credenciais").then((credenciais) => {
+      cy.get("#username").type(credenciais.valida.usuario);
+      cy.get("#senha").type(credenciais.valida.senha);
+    });
+
     cy.screenshot("Após carregar a página de login e seus dados");
     cy.contains("button", "Entrar").click();
     cy.screenshot("Após clicar no botão de entrar");
@@ -18,13 +21,17 @@ describe("Login", () => {
 
   it("Login com dados inválidos, deve apresentar mensagem de erro entrada no sistema", () => {
     // act
-    cy.get("#username").type("julio.lima");
-    cy.get("#senha").type("1234");
+    cy.fixture("credenciais").then((credenciais) => {
+      cy.get("#username").type(credenciais.invalida.usuario);
+      cy.get("#senha").type(credenciais.invalida.senha);
+    });
+
     //cy.get("#login-section > .btn").click(); pode ser desta forma ou a forma abaixo mais legível
     cy.contains("button", "Entrar").click();
 
     // assert
     //cy.get(".toast").should("be.visible");
+
     cy.get(".toast").should("have.text", "Erro no login. Tente novamente.");
   });
 });
