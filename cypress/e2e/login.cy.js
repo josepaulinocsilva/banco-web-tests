@@ -1,9 +1,7 @@
 describe("Login", () => {
   beforeEach(() => {
-    // Busca a URL como um item de lista e aguarda o retorno assíncrono do Cypress
-    cy.env(["URL"]).then(({ URL }) => {
-      cy.visit(URL);
-    });
+    cy.visit("/");
+    cy.screenshot("Após carregar a página de login");
   });
 
   it("Login com dados válidos, deve permitir entrada no sistema", () => {
